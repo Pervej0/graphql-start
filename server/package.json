@@ -1,15 +1,15 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "compile": "tsc -w",
-    "start": "nodemon ./dist/index.js",
+    "start": "nodemon /dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

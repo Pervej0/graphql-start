@@ -1,5 +1,6 @@
 const books = [
   {
+    id: "book-1",
     title: "The Awakening",
     author: "Kate Chopin",
     year: 1899,
@@ -7,6 +8,7 @@ const books = [
     rating: 4.2,
   },
   {
+    id: "book-2",
     title: "City of Glass",
     author: "Paul Auster",
     year: 1985,
@@ -14,6 +16,7 @@ const books = [
     rating: 4.1,
   },
   {
+    id: "book-3",
     title: "Rich Dad Poor Dad",
     author: "Robert Kiyosaki, Sharon Lechter",
     year: 1997,
@@ -21,6 +24,7 @@ const books = [
     rating: 4.5,
   },
   {
+    id: "book-4",
     title: "To Kill a Mockingbird",
     author: "Harper Lee",
     year: 1960,
@@ -28,6 +32,7 @@ const books = [
     rating: 4.8,
   },
   {
+    id: "book-5",
     title: "1984",
     author: "George Orwell",
     year: 1949,
@@ -35,6 +40,7 @@ const books = [
     rating: 4.7,
   },
   {
+    id: "book-6",
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     year: 1925,
@@ -42,6 +48,7 @@ const books = [
     rating: 4.3,
   },
   {
+    id: "book-7",
     title: "Sapiens: A Brief History of Humankind",
     author: "Yuval Noah Harari",
     year: 2011,
@@ -49,6 +56,7 @@ const books = [
     rating: 4.6,
   },
   {
+    id: "book-8",
     title: "The Catcher in the Rye",
     author: "J.D. Salinger",
     year: 1951,
@@ -56,6 +64,7 @@ const books = [
     rating: 4.0,
   },
   {
+    id: "book-9",
     title: "Atomic Habits",
     author: "James Clear",
     year: 2018,
@@ -63,6 +72,7 @@ const books = [
     rating: 4.8,
   },
   {
+    id: "book-10",
     title: "Brave New World",
     author: "Aldous Huxley",
     year: 1932,
@@ -70,6 +80,7 @@ const books = [
     rating: 4.2,
   },
   {
+    id: "book-11",
     title: "The Alchemist",
     author: "Paulo Coelho",
     year: 1988,
@@ -77,6 +88,7 @@ const books = [
     rating: 4.4,
   },
   {
+    id: "book-12",
     title: "Thinking, Fast and Slow",
     author: "Daniel Kahneman",
     year: 2011,
@@ -84,6 +96,7 @@ const books = [
     rating: 4.5,
   },
   {
+    id: "book-13",
     title: "Moby-Dick",
     author: "Herman Melville",
     year: 1851,
@@ -92,6 +105,8 @@ const books = [
   },
 ];
 
-export const db = {
+const db = {
   books,
 };
+
+export default db;
