@@ -1,34 +1,18 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import db from "./db";
+import { typeDefs } from "./gql/schema";
+import { resolvers } from "./gql/resolver";
+import { Server } from "http";
 
-const typeDefs = `#graphql
-    type Book {
-       title: String,
-       author: String,
-       year: Int,
-       genre: String,
-       rating: Float,
-    }
-
-   type Query {
-    books: [Book]
-    book (bookId: ID!): Book 
-  }
-`;
-
-const resolvers = {
-  Query: {
-    books: () => db.books,
-    book: (parent: any, args: { bookId: string }, context: any) =>
-      db.books.find((item: any) => item.id === args.bookId),
-  },
-};
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
+let server: ApolloServer;
+try {
+  server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
+} catch (error) {
+  console.log(error);
+}
 
 const main = async () => {
   const { url } = await startStandaloneServer(server, {

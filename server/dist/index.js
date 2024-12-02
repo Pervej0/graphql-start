@@ -8,37 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("@apollo/server");
 const standalone_1 = require("@apollo/server/standalone");
-const db_1 = __importDefault(require("./db"));
-const typeDefs = `#graphql
-    type Book {
-       title: String,
-       author: String,
-       year: Int,
-       genre: String,
-       rating: Float,
-    }
-
-   type Query {
-    books: [Book]
-    book (bookId: ID!): Book 
-  }
-`;
-const resolvers = {
-    Query: {
-        books: () => db_1.default.books,
-        book: (parent, args, context) => db_1.default.books.find((item) => item.id === args.bookId),
-    },
-};
-const server = new server_1.ApolloServer({
-    typeDefs,
-    resolvers,
-});
+const schema_1 = require("./gql/schema");
+const resolver_1 = require("./gql/resolver");
+let server;
+try {
+    server = new server_1.ApolloServer({
+        typeDefs: schema_1.typeDefs,
+        resolvers: resolver_1.resolvers,
+    });
+}
+catch (error) {
+    console.log(error);
+}
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const { url } = yield (0, standalone_1.startStandaloneServer)(server, {
         listen: { port: 4000 },
