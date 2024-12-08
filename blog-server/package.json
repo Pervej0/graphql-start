@@ -1,8 +1,9 @@
 {
   "name": "blog-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
+    "dev": "nodemon --watch './**/*.ts' --exec ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -10,6 +11,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "nodemon": "^3.1.7"
+    "@apollo/server": "^4.11.2",
+    "@prisma/client": "^6.0.1",
+    "graphql": "^16.9.0",
+    "nodemon": "^3.1.7",
+    "prisma": "^6.0.1",
+    "ts-node-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
   }
 }
