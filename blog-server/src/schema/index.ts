@@ -1,6 +1,12 @@
 export const typeDefs = `#graphql
     type Query {
+        me(id:String!): UserResponse
         users: [User]
+    }
+
+    type UserResponse {
+        message: String
+        data: User
     }
 
     type Mutation {
@@ -8,7 +14,17 @@ export const typeDefs = `#graphql
             name: String!,
             email: String!,
             password: String!,
-            bio: String ): User 
+            ): AuthPayload
+            
+        signin(
+        email: String,
+        password: String
+        ): AuthPayload
+    }
+
+    type AuthPayload{ 
+        message: String
+        token: String        
     }
 
     type Post{
