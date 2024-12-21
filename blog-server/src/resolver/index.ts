@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import config from "../config";
+import { jwtHelper } from "../utils/jwtHelper";
 
 const prisma = new PrismaClient();
 
@@ -32,7 +34,14 @@ export const resolvers = {
         id: user.id,
         email: user.email,
       };
-      const token = jwt.sign(payload, "secretKey", { expiresIn: "1d" });
+
+      const token = jwtHelper(payload, config.SECRET_KEY as string);
+
+      if (args.bio) {
+        await prisma.profile.create({
+          data: { bio: args.bio, userId: user.id },
+        });
+      }
 
       return {
         message: "Registered Successfully!",
@@ -59,12 +68,19 @@ export const resolvers = {
         id: user.id,
         email: user.email,
       };
-      const token = jwt.sign(payload, "secretKey", { expiresIn: "1d" });
+      const token = jwtHelper(payload, config.SECRET_KEY as string);
 
       return {
         message: "login Successfully!",
         token,
       };
+    },
+
+    createPost: async (parent: any, args: any, context: any) => {
+      args.authorId = Number(args.authorId);
+      const post = await prisma.post.create({ data: args });
+
+      return post;
     },
   },
 };
